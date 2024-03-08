@@ -21,11 +21,25 @@
   <div>&nbsp;</div>
 </div>
 
-
-
 ## 📄 Table of Contents
 
-[TOC]
+- [🎉 What's New](#-whats-new)
+- [📚 Introduction](#-introduction)
+- [⚙️ Installation](#%EF%B8%8F-installation)
+  - [💡 Prerequisites](#-prerequisites)
+  - [🛠️ Build](#%EF%B8%8F-build)
+- [✏️ Tutorial](#%EF%B8%8F-tutorial)
+  - [🧨 Quick Start](#-quick-start)
+    - [1. Data Preparation](#1-data-preparation)
+    - [2. Model Preparation](#2-model-preparation)
+    - [3. Building the Engine](#3-building-the-engine)
+    - [4. Executing Inference (demo)](#4-executing-inference-demo)
+- [💻 Overview of Benchmark and Model Zoo](#-overview-of-benchmark-and-model-zoo)
+- [📖 Document](#-document)
+- [❓ FAQ](#-faq)
+- [🧾 License](#-license)
+- [🎯 Reference](#-reference)
+
 
 ## 🎉 What's New
 

@@ -318,7 +318,7 @@ void YoloLayer::serialize(void *buffer) const noexcept
     write(d, m_OutputSize);
 
     // write anchors:
-    for (int i = 0; i < m_Anchors.size(); i++)
+    for (size_t i = 0; i < m_Anchors.size(); i++)
     {
         write(d, m_Anchors[i]);
     }

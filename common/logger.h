@@ -22,10 +22,8 @@
 
 class SampleErrorRecorder;
 extern SampleErrorRecorder gRecorder;
-
-namespace xtrt
+namespace sample
 {
-    
 extern Logger gLogger;
 extern LogStreamConsumer gLogVerbose;
 extern LogStreamConsumer gLogInfo;
@@ -34,6 +32,6 @@ extern LogStreamConsumer gLogError;
 extern LogStreamConsumer gLogFatal;
 
 void setReportableSeverity(Logger::Severity severity);
-} // namespace xtrt
+} // namespace sample
 
 #endif // LOGGER_H

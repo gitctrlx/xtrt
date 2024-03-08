@@ -1,5 +1,7 @@
 #pragma once
 
+#include "preprocess.cuh"
+
 /* --------------------------------------------------------
  * These configs are related to tensorrt model, if these are changed,
  * please re-compile and re-serialize the tensorrt model.
@@ -45,14 +47,17 @@ constexpr static int kNumAnchor = 3;
 // The bboxes whose confidence is lower than kIgnoreThresh will be ignored in yololayer plugin.
 constexpr static float kIgnoreThresh = 0.1f;
 
+
+const static ScaleMethod method =  ScaleMethod::LetterBox;
+
 /* --------------------------------------------------------
  * These configs are NOT related to tensorrt model, if these are changed,
  * please re-compile, but no need to re-serialize the tensorrt model.
  * --------------------------------------------------------*/
 
 // NMS overlapping thresh and final detection confidence thresh
-const static float kNmsThresh = 0.7f;
-const static float kConfThresh = 0.4f;
+const static float kNmsThresh = 0.5f;
+const static float kConfThresh = 0.25f;
 
 const static int kGpuId = 0;
 

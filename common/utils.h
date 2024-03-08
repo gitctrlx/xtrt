@@ -1,3 +1,8 @@
+/**
+ * @file utils.h
+ * @brief This file contains utility functions for CUDA programming.
+ */
+
 #pragma once
 
 #include <cuda_runtime_api.h>
@@ -9,7 +14,11 @@
 #include <vector>
 #include <cstring>
 
-
+/**
+ * @def CUDA_CHECK
+ * @brief Macro to check the status of a CUDA operation and abort if it fails.
+ * @param status The status of the CUDA operation.
+ */
 #define CUDA_CHECK(status) {                                                                                               \
   if (status != 0) {                                                                                                       \
     std::cout << "CUDA failure: " << cudaGetErrorString(status) << " in file " << __FILE__  << " at line "  << __LINE__ << \
@@ -18,6 +27,12 @@
   }                                                                                                                        \
 }
 
+/**
+ * @brief Read all files in a directory and store their names in a vector.
+ * @param p_dir_name The name of the directory.
+ * @param file_names The vector to store the file names.
+ * @return 0 if successful, -1 if the directory cannot be opened.
+ */
 static inline int read_files_in_dir(const char* p_dir_name, std::vector<std::string>& file_names) {
 
     DIR *p_dir = opendir(p_dir_name);
@@ -29,9 +44,6 @@ static inline int read_files_in_dir(const char* p_dir_name, std::vector<std::str
     while ((p_file = readdir(p_dir)) != nullptr) {
         if (strcmp(p_file->d_name, ".") != 0 &&
             strcmp(p_file->d_name, "..") != 0) {
-            //std::string cur_file_name(p_dir_name);
-            //cur_file_name += "/";
-            //cur_file_name += p_file->d_name;
             std::string cur_file_name(p_file->d_name);
             file_names.push_back(cur_file_name);
         }
@@ -41,7 +53,11 @@ static inline int read_files_in_dir(const char* p_dir_name, std::vector<std::str
     return 0;
 }
 
-// Function to trim leading and trailing whitespace from a string
+/**
+ * @brief Trim leading and trailing whitespace from a string.
+ * @param str The input string.
+ * @return The string with leading and trailing whitespace removed.
+ */
 static inline std::string trim_leading_whitespace(const std::string& str) {
     size_t first = str.find_first_not_of(' ');
     if (std::string::npos == first) {
@@ -51,7 +67,12 @@ static inline std::string trim_leading_whitespace(const std::string& str) {
     return str.substr(first, (last - first + 1));
 }
 
-// Src: https://stackoverflow.com/questions/16605967
+/**
+ * @brief Convert a float value to a string with a specified precision.
+ * @param a_value The float value to convert.
+ * @param n The precision of the output string (default is 2).
+ * @return The string representation of the float value.
+ */
 static inline std::string to_string_with_precision(const float a_value, const int n = 2) {
     std::ostringstream out;
     out.precision(n);
@@ -59,6 +80,12 @@ static inline std::string to_string_with_precision(const float a_value, const in
     return out.str();
 }
 
+/**
+ * @brief Read labels from a file and store them in an unordered map.
+ * @param labels_filename The name of the file containing the labels.
+ * @param labels_map The unordered map to store the labels.
+ * @return 0 if successful, -1 if the file cannot be opened.
+ */
 static inline int read_labels(const std::string labels_filename, std::unordered_map<int, std::string>& labels_map) {
 
     std::ifstream file(labels_filename);
@@ -78,5 +105,3 @@ static inline int read_labels(const std::string labels_filename, std::unordered_
 
     return 0;
 }
-
-

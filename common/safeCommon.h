@@ -45,7 +45,7 @@
         if (ret != 0)                                                                                                  \
         {                                                                                                              \
             std::cerr << "Cuda failure: " << ret << std::endl;                                                         \
-            abort();                                                                                                   \
+            exit(EXIT_FAILURE);                                                                                                  \
         }                                                                                                              \
     } while (0)
 
@@ -56,11 +56,11 @@
         if (!(condition))                                                   \
         {                                                                   \
             std::cerr << "Assertion failure: " << #condition << std::endl;  \
-            abort();                                                        \
+            exit(EXIT_FAILURE);                                                       \
         }                                                                   \
     } while (0)
 
-namespace xtrtCommon
+namespace samplesCommon
 {
 template <typename T>
 inline std::shared_ptr<T> infer_object(T* obj)
@@ -76,13 +76,15 @@ inline uint32_t elementSize(nvinfer1::DataType t)
 {
     switch (t)
     {
+    // case nvinfer1::DataType::kINT64: return 8;
     case nvinfer1::DataType::kINT32:
     case nvinfer1::DataType::kFLOAT: return 4;
-    case nvinfer1::DataType::kHALF: return 2;
-    case nvinfer1::DataType::kINT8: return 1;
-    case nvinfer1::DataType::kUINT8: return 1;
-    case nvinfer1::DataType::kBOOL: return 1;
-    case nvinfer1::DataType::kFP8: return 1;
+    case nvinfer1::DataType::kHALF:
+    /*case nvinfer1::DataType::kBF16:*/ return 2;
+    case nvinfer1::DataType::kINT8:
+    case nvinfer1::DataType::kUINT8:
+    case nvinfer1::DataType::kBOOL:
+    /*case nvinfer1::DataType::kFP8:*/ return 1;
     }
     return 0;
 }
@@ -112,7 +114,7 @@ inline int64_t volume(nvinfer1::Dims dims, int32_t vecDim, int32_t comps, int32_
     {
         dims.d[vecDim] = roundUp(dims.d[vecDim], comps);
     }
-    return xtrtCommon::volume(dims) * std::max(batch, 1);
+    return samplesCommon::volume(dims) * std::max(batch, 1);
 }
 
 //!
@@ -179,7 +181,7 @@ public:
         }
         // Clean up any CUDA error.
         cudaGetLastError();
-        xtrt::gLogError << "The CUDA graph capture on the stream has failed." << std::endl;
+        sample::gLogError << "The CUDA graph capture on the stream has failed." << std::endl;
     }
 
 private:
@@ -198,9 +200,9 @@ inline void safeLoadLibrary(const std::string& path)
     if (handle == nullptr)
     {
 #ifdef _MSC_VER
-        xtrt::gLogError << "Could not load plugin library: " << path << std::endl;
+        sample::gLogError << "Could not load plugin library: " << path << std::endl;
 #else
-        xtrt::gLogError << "Could not load plugin library: " << path << ", due to: " << dlerror() << std::endl;
+        sample::gLogError << "Could not load plugin library: " << path << ", due to: " << dlerror() << std::endl;
 #endif
     }
 }
@@ -219,6 +221,6 @@ inline std::vector<std::string> safeSplitString(std::string str, char delimiter 
     return splitVect;
 }
 
-} // namespace xtrtCommon
+} // namespace samplesCommon
 
 #endif // TENSORRT_SAFE_COMMON_H

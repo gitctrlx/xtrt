@@ -75,7 +75,7 @@ public:
         }
         catch (const std::exception& e)
         {
-            xtrt::gLogFatal << "Internal Error: " << e.what() << std::endl;
+            sample::gLogFatal << "Internal Error: " << e.what() << std::endl;
         }
     };
 
@@ -90,12 +90,12 @@ public:
         try
         {
             std::lock_guard<std::mutex> guard(mStackLock);
-            xtrt::gLogError << "Error[" << static_cast<int32_t>(val) << "]: " << desc << std::endl;
+            sample::gLogError << "Error[" << static_cast<int32_t>(val) << "]: " << desc << std::endl;
             mErrorStack.push_back(errorPair(val, desc));
         }
         catch (const std::exception& e)
         {
-            xtrt::gLogFatal << "Internal Error: " << e.what() << std::endl;
+            sample::gLogFatal << "Internal Error: " << e.what() << std::endl;
         }
         // All errors are considered fatal.
         return true;

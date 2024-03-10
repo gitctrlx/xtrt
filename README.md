@@ -44,7 +44,7 @@
 
 ## 🎉 What's New
 
-✨**v0.1.0** First release on March 8, 2024:
+✨**[2024.03.08] ** v0.1.0 First release on March 8, 2024:
 
 - Enables rapid deployment of various deep learning models, converting them into TensorRT engine files.
 - Supports multi-precision model deployment, including int8 quantization, with fine-tuning capabilities during quantization.
@@ -102,7 +102,7 @@ To build the X-TRT components, you will first need the following software packag
 Building the Basic Inference Framework：
 
 ```bash
-$ git clone https://github.com/gitctrlx/xtrt.git
+git clone https://github.com/gitctrlx/xtrt.git
 cmake -S . -B build 
 cmake --build build
 ```
@@ -122,7 +122,7 @@ python3 -m pip install requirements.txt
 
 #### 1. Data Preparation
 
-Data is used for calibration during quantization. We plan to use the [COCO val dataset](http://images.cocodataset.org/zips/val2017.zip) for model quantization calibration work. 将下载好的val2017数据集放在 data/coco目录下。
+Data is used for calibration during quantization. We plan to use the [COCO val dataset](http://images.cocodataset.org/zips/val2017.zip) for model quantization calibration work. Place the downloaded val2017 dataset in the data/coco directory.
 
 ```bash
 ├── cmake
@@ -155,19 +155,19 @@ Once the dataset is ready, the next step is to construct the engine. Below is an
 ```sh
 ./build/build \
     "./weights/yolov5s_trt8.onnx" \    # ONNX Model File Path
-    "./engine/yolo.plan" \			   # TensorRT Engine Save Path
-    "int8" \						   # Quantization Precision
-    3 \								   # TRT Optimization Level
-    1 1 1 \							   # Dynamic Shape Parameters
+    "./engine/yolo.plan" \             # TensorRT Engine Save Path
+    "int8" \                           # Quantization Precision
+    3 \                                # TRT Optimization Level
+    1 1 1 \                            # Dynamic Shape Parameters
     3 3 3 \							 
     640 640 640 \					   
     640 640 640 \					   
-    550 \							   # Calibration Iterations
-    "./data/coco/val2017" \			   # Calibration Dataset Path
-    "./data/coco/filelist.txt" \	   # Calibration Image List
+    550 \                              # Calibration Iterations
+    "./data/coco/val2017" \	           # Calibration Dataset Path
+    "./data/coco/filelist.txt" \       # Calibration Image List
     "./engine/int8Cache/int8.cache" \  # Calibration File Save Path
-    true \							   # Timing Cache Usage
-    false \							   # Ignore Timing Cache Mismatch
+    true \                             # Timing Cache Usage
+    false \                            # Ignore Timing Cache Mismatch
     "./engine/timingCache/timing.cache"# Timing Cache Save Path
 ```
 
@@ -180,10 +180,10 @@ Inferencing a single image using the built YOLO TensorRT engine.
 ```sh
 ./build/yolo_det_img \
     "engine/yolo_m.plan" \   # TensorRT Engine Save Path
-    "media/demo.jpg" \	     # Input Image Path
+    "media/demo.jpg" \       # Input Image Path
     "output/output.jpg"\     # Output Image Path
-    2 \ 				     # Pre-processing Pipeline
-    1 3 640 640			     # Input Model Tensor Values
+    2 \                      # Pre-processing Pipeline
+    1 3 640 640              # Input Model Tensor Values
 ```
 
 Inferencing a video using the built YOLO TensorRT engine.
@@ -191,10 +191,10 @@ Inferencing a video using the built YOLO TensorRT engine.
 ```sh
 ./build/yolo_det \
     "engine/yolo_trt8.plan" \ # TensorRT Engine Save Path
-    "media/c3.mp4" \		  # Input Image Path 
-    "output/output.mp4"\	  # Output Image Path
-    2 \						  # Pre-processing Pipeline
-    1 3 640 640				  # Input Model Tensor Values
+    "media/c3.mp4" \          # Input Image Path 
+    "output/output.mp4"\      # Output Image Path
+    2 \	                      # Pre-processing Pipeline
+    1 3 640 640	              # Input Model Tensor Values
 ```
 
 For a detailed analysis of the code's parameters, please see the [detailed documentation](doc).

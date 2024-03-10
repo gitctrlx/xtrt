@@ -4,14 +4,14 @@
   <img src="./assets/xtrt__logo.png" width="50%"/>
   <div>&nbsp;</div>
   <div align="center">
-    <b><font size="5">xtrt document</font></b>
+    <b><font size="5">XTRT document</font></b>
     <sup>
-      <a href="https://github.com/gitctrlx/xtrt/doc">
+      <a href="https://github.com/gitctrlx/xtrt/tree/main/doc">
         <i><font size="4">HOT</font></i>
       </a>
     </sup>
     &nbsp;&nbsp;&nbsp;&nbsp;
-    <b><font size="5">xtrt installation</font></b>
+    <b><font size="5">XTRT installation</font></b>
     <sup>
       <a href="https://github.com/gitctrlx/xtrt?tab=readme-ov-file#Installation">
         <i><font size="4">TRY IT OUT</font></i>
@@ -20,6 +20,7 @@
   </div>
   <div>&nbsp;</div>
 </div>
+
 
 ## 📄 Table of Contents
 

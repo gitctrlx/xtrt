@@ -44,7 +44,7 @@
 
 ## 🎉 What's New
 
-✨**[2024.03.08] ** v0.1.0 First release on March 8, 2024:
+✨ **[2024.03.08]**  First release v0.1.0 on March 8, 2024:
 
 - Enables rapid deployment of various deep learning models, converting them into TensorRT engine files.
 - Supports multi-precision model deployment, including int8 quantization, with fine-tuning capabilities during quantization.
@@ -163,7 +163,7 @@ Once the dataset is ready, the next step is to construct the engine. Below is an
     640 640 640 \					   
     640 640 640 \					   
     550 \                              # Calibration Iterations
-    "./data/coco/val2017" \	           # Calibration Dataset Path
+    "./data/coco/val2017" \            # Calibration Dataset Path
     "./data/coco/filelist.txt" \       # Calibration Image List
     "./engine/int8Cache/int8.cache" \  # Calibration File Save Path
     true \                             # Timing Cache Usage

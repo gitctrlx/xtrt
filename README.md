@@ -50,27 +50,50 @@
 - Supports multi-precision model deployment, including int8 quantization, with fine-tuning capabilities during quantization.
 - Supports Quantization-Dequantization (QDQ) for quantizing ONNX models.
 - Facilitates model inference accuracy validation across multiple platforms (PyTorch, ONNXRuntime, TensorRT).
-- Includes support for the Efficient NMS plugin, Rotated Object Detection NMS plugin, and YOLO decode plugin.
+- Includes support for the `Efficient NMS plugin`, `Rotated Object Detection NMS plugin`, and `YOLO decode plugin`.
 
 ## 📚 Introduction
 
-`X-TRT` is a lightweight and highly efficient deep learning model inference platform developed based on TensorRT C++. 
+`X-TRT` is a lightweight and highly efficient deep learning model inference platform developed based on TensorRT C++.
 
-- **High Efficiency and Versatility**: X-TRT combines lightweight design and high efficiency, minimizing resource use and maximizing processing speed, making it ideal for a wide range of hardware. It's built with TensorRT C++ to enhance deep learning inference performance through optimized model execution.
-
-- **Broad Compatibility and Deployment Options**: Designed for wide operating system compatibility, X-TRT supports major platforms like Ubuntu and Windows, and extends to high-performance edge computing with support for deployment on edge devices, including the Jetson series.
-
-- **Streamlined and Optimized Deployment**: X-TRT simplifies the deployment process for deep learning models, facilitating easier use across cloud and edge computing environments while optimizing model execution to efficiently unlock the full potential of deep learning technologies.
+- **Lightweight and Scalability**: The most notable advantage of X-TRT is its lightweight and scalability. It offers a variety of decoupled tool classes, such as model accuracy verification and tuning tools, ONNX model quantization tools, ONNX model modification tools, and many example codes. These features significantly enhance the platform's flexibility and user-friendliness, making X-TRT not only suitable for advanced users for deep customization and optimization but also accessible for beginners to learn and use.
+- **High Efficiency and Versatility**: X-TRT combines a lightweight design with high efficiency, minimizing resource use and maximizing processing speed, making it ideal for a wide range of hardware. It is built with TensorRT C++, enhancing deep learning inference performance through optimized model execution.
+- **Broad Compatibility and Deployment Options**: Designed for wide operating system compatibility, X-TRT supports major platforms such as Ubuntu and Windows and extends to high-performance edge computing with support for deployment on edge devices, including the Jetson series.
 
 ## ⚙️ Installation
 
 ### 💡 Prerequisites
 
-To build the X-TRT components, you will first need the following software packages.
+#### 🔖 Docker
 
-**TensorRT GA build**
+ (Coming soon!) We recommend deploying with Docker for the quickest project startup. Docker images for both X86 architecture and NVIDIA Jetson ARM architecture are provided. 
+
+```bash
+docker build -f docker/[dockerfile]
+```
+
+If you prefer to manually configure the environment, please continue reading the section below.
+
+#### 🔖 NVIDIA Jetson Appliances
+
+- [JetPack SDK](https://developer.nvidia.com/embedded/jetpack) >= v5.0.2
+- [DeepStream](https://developer.nvidia.com/deepstream-sdk) >= v6.2
+
+#### 🔖 Windows or Linux (x86)
+
+<details>
+<summary><strong>Click to expand to read the detailed environment configuration.</strong></summary>
+<div>
+
+To build the `JetYOLO` components, you will first need the following software packages.
+
+**TensorRT**
 
 - [TensorRT](https://developer.nvidia.com/nvidia-tensorrt-download) >= v8.5
+
+**DeepStream**
+
+- [DeepStream](https://developer.nvidia.com/deepstream-sdk) >= v6.1
 
 **System Packages**
 
@@ -97,6 +120,11 @@ To build the X-TRT components, you will first need the following software packag
 
 - You need the CUDA version of [PyTorch](https://pytorch.org/get-started/locally/). If your device is **Jetson**, please refer to the [Jetson Models Zoo](https://elinux.org/Jetson_Zoo) for installation.
 
+</div>
+</details>
+
+
+
 ### 🛠️ build
 
 Building the Basic Inference Framework：
@@ -110,11 +138,13 @@ cmake --build build
 > If you wish to compile the eval tool, please add the option `-DBUILD_TOOLS_EVAL=ON` during compilation. 
 > If you are unsure about your CUDA SM version, you can run `tools/cudasm.sh` to check. For more details, please see [FAQ](doc/faq.md).
 
-If you would like to use the complete set of tools developed in Python, please install the following: (Optional)
+(Optional) If you would like to use the complete set of tools developed in Python, please install the following: 
 
 ```python
 python3 -m pip install requirements.txt
 ```
+
+
 
 ## ✏️ Tutorial
 
@@ -226,4 +256,7 @@ This project references many excellent works from predecessors, and some useful 
 1. [TensorRT](https://github.com/NVIDIA/TensorRT)
 2. [mmyolo](https://github.com/open-mmlab/mmyolo)
 3. [Lidar_AI_Solution](https://github.com/NVIDIA-AI-IOT/Lidar_AI_Solution)
+4. [PPQ](https://github.com/openppl-public/ppq)
+5. [DeepStream-Yolo](https://github.com/marcoslucianops/DeepStream-Yolo)
+6. [CVprojects](https://github.com/enpeizhao/CVprojects)
 

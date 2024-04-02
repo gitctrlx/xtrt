@@ -2,14 +2,14 @@ cmake_minimum_required(VERSION 3.18)
 
 set(CMAKE_CUDA_ARCHITECTURES 60 61 62 70 72 75 86)
 set(CMAKE_CUDA_COMPILER /usr/local/cuda/bin/nvcc)
-set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} -Xcompiler=-fPIC") # Ensure -fPIC is used for CUDA
+# set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} -Xcompiler=-fPIC") # Ensure -fPIC is used for CUDA
 
 project(xtrt LANGUAGES CXX CUDA)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -O3 -g -Wall -Werror -Wno-error=unused-variable -Wno-error=unused-function -fPIC")
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_BUILD_TYPE Release)
-option(CUDA_USE_STATIC_CUDA_RUNTIME OFF)
+# option(CUDA_USE_STATIC_CUDA_RUNTIME OFF)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 find_package(CUDA REQUIRED)
@@ -50,7 +50,7 @@ add_executable(yolo_det
 
 target_link_libraries(yolo_plugin  PUBLIC ${TensorRT_LIBRARIES})
 target_link_libraries(yolo_utils   PUBLIC ${OpenCV_LIBS})
-target_link_libraries(build        PRIVATE yolo_utils yolo_plugin) # -Wl,--no-as-needed is needed to avoid linking errors
+target_link_libraries(build        PRIVATE -Wl,--no-as-needed yolo_utils yolo_plugin) # -Wl,--no-as-needed is needed to avoid linking errors
 target_link_libraries(yolo_det     PRIVATE yolo_utils yolo_plugin)
 target_link_libraries(yolo_det_img PRIVATE yolo_utils  yolo_plugin)
 

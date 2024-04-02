@@ -28,6 +28,7 @@ engine/timingCache/*.cache
 data/coco/val2017/*.jpg
 tools/eval/log/*.log
 tools/quant/log/*.log
+output/output.mp4
 
 # Other general ignores
 *.log

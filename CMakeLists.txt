@@ -50,7 +50,7 @@ add_executable(yolo_det
 
 target_link_libraries(yolo_plugin  PUBLIC ${TensorRT_LIBRARIES})
 target_link_libraries(yolo_utils   PUBLIC ${OpenCV_LIBS})
-target_link_libraries(build        PRIVATE -Wl,--no-as-needed yolo_utils yolo_plugin) # -Wl,--no-as-needed is needed to avoid linking errors
+target_link_libraries(build        PRIVATE -Wl,--no-as-needed yolo_utils yolo_plugin) # -Wl,--no-as-needed is needed to avoid custom trt-plugin linking errors
 target_link_libraries(yolo_det     PRIVATE yolo_utils yolo_plugin)
 target_link_libraries(yolo_det_img PRIVATE yolo_utils  yolo_plugin)
 

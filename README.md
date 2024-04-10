@@ -259,4 +259,5 @@ This project references many excellent works from predecessors, and some useful 
 4. [PPQ](https://github.com/openppl-public/ppq)
 5. [DeepStream-Yolo](https://github.com/marcoslucianops/DeepStream-Yolo)
 6. [CVprojects](https://github.com/enpeizhao/CVprojects)
+7. [efficientTensorRTNMSPluginForRotateBox](https://github.com/thb1314/efficientTensorRTNMSPluginForRotateBox)
 

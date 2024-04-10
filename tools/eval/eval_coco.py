@@ -1,7 +1,7 @@
 from pycocotools.coco import COCO
 from pycocotools.cocoeval import COCOeval
 
-annFile = '../../data/coco/annotations/instances_val2017.json'  
+annFile = './xtrt/data/coco/annotations/instances_val2017.json'  
 resFile = 'results.json'  
 
 cocoGt = COCO(annFile)

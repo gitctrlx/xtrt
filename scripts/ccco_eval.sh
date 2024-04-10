@@ -1,4 +1,4 @@
-./build/eval \
+./build/yolo_eval \
     "../../engine/yolo.plan" \
     "../../data/coco/filelist.txt" \
     "../../data/coco/val2017/" \

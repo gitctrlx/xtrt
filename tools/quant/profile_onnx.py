@@ -6,14 +6,13 @@ from ppq.core import TargetPlatform
 from tqdm import tqdm
 from ppq.api import register_operation_handler
 
-def happyforward(*args, **kwards):
+def efficientNMS_forward(*args, **kwards):
     return \
         torch.zeros([1, 1], dtype=torch.int32).cuda(), \
         torch.zeros([1, 100, 4],dtype=torch.float32).cuda(), \
         torch.zeros([1, 100],dtype=torch.float32).cuda(), \
         torch.zeros([1, 100], dtype=torch.int32).cuda() 
-register_operation_handler(happyforward, 'EfficientNMS_TRT', platform=TargetPlatform.FP32)
-
+register_operation_handler(efficientNMS_forward, 'EfficientNMS_TRT', platform=TargetPlatform.FP32)
 
 sample_input = [torch.rand(1, 3, 640, 640) for i in range(32)]
 ir = quantize_onnx_model(
